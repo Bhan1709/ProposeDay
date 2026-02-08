@@ -783,11 +783,21 @@
         }
 
         function handleNoClick() {
+            
             if (runAwayCount<1) {
                 if (!hasMusicInteracted) {
                     startMusic();
                 }  
                 runAwayCount++; // unlock runaway mode
+                const noBtn = document.getElementById('noBtn');
+                const rect = noBtn.getBoundingClientRect();
+                document.body.appendChild(noBtn);
+
+                // 3️⃣ Convert it to viewport positioning
+                noBtn.style.position = "fixed";
+                noBtn.style.left = `${rect.left}px`;
+                noBtn.style.top = `${rect.top}px`;
+                noBtn.style.zIndex = "9999";
             }
             runAway();
         }
