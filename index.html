@@ -332,12 +332,12 @@
 
         .name-highlight {
             background: linear-gradient(135deg, #ffd700, #ffaa00, #fff176);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-style: italic;
-    font-weight: bold;
-    filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-style: italic;
+            font-weight: bold;
+            filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
         }
 
         .subtitle {
@@ -360,11 +360,11 @@
 
         .question .name-in-question {
             background: linear-gradient(135deg, #ffd700, #ffaa00, #fff176);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-font-weight: bold;
-filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
         }
 
         .buttons-container {
@@ -398,7 +398,7 @@ filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
                 0 0 0 0 rgba(255,105,180,0.7);
             animation: yes-pulse 2s ease-in-out infinite;
             position: relative;
-            z-index: 1000;
+            z-index: 65;
         }
 
         @keyframes yes-pulse {
@@ -427,7 +427,7 @@ filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
             transition: all 0.15s ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             position: relative;
-            z-index: 999;
+            z-index: 70;
             cursor: pointer;
         }
 
@@ -465,7 +465,7 @@ filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
             font-weight: bold;
             opacity: 0;
             transition: opacity 0.3s ease;
-            z-index: 100;
+            z-index: 60;
             box-shadow: 
                 0 10px 40px rgba(168,85,247,0.5),
                 0 0 20px rgba(255,105,180,0.3);
@@ -496,6 +496,14 @@ filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
         }
 
         /* ============ RESPONSIVE ============ */
+        @media (max-height: 650px), (max-width: 420px) {
+            .hover-message {
+                bottom: auto;
+                top: 15%;
+                transform: translateX(-50%);
+            }
+        }
+
         @media (max-height: 700px) {
             .teddy-head {
                 font-size: clamp(70px, 15vw, 120px);
@@ -781,8 +789,9 @@ filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
             const yesCenterY = yesBtnRect.top + yesBtnRect.height / 2;
             
             // Strict radius around Yes button (100-180px)
-            const minRadius = 100;
-            const maxRadius = 180;
+            const isSmallScreen = window.innerWidth < 480 || window.innerHeight < 700;
+            const minRadius = isSmallScreen ? 60 : 100;
+            const maxRadius = isSmallScreen ? 120 : 180;
             
             // Random angle
             const angle = Math.random() * Math.PI * 2;
@@ -803,6 +812,7 @@ filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
             const padding = 15;
             newX = Math.max(padding, Math.min(newX - btnWidth/2, window.innerWidth - btnWidth - padding));
             newY = Math.max(padding, Math.min(newY - btnHeight/2, window.innerHeight - btnHeight - padding));
+
             
             // Apply position
             noBtn.style.position = 'fixed';
@@ -945,7 +955,7 @@ filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
             border: 2px solid rgba(255,255,255,0.3);
             cursor: pointer;
             font-size: 22px;
-            z-index: 9999;
+            z-index: 50;
             box-shadow: 0 5px 25px rgba(255,105,180,0.5);
             transition: all 0.3s ease;
             animation: pulse-music 2s ease-in-out infinite;
